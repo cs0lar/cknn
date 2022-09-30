@@ -1,0 +1,2 @@
+tdlda@git+https://github.com/cs0lar/tdlda.git
+textrank@git+https://github.com/cs0lar/textrank.git
