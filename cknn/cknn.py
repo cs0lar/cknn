@@ -20,7 +20,7 @@ class CKNN( object ):
 		for word in text.split( ' ' ):
 			C[ self._v2idx[ word ] ] += 1
 
-		return C
+		return np.reshape( C, ( len( C ), 1 ) )
 
 	def topics( self, X, n, alpha0=1., Phi=None ):
 
@@ -40,13 +40,13 @@ class CKNN( object ):
 		return self.LDA
 
 
-	def neighbours( self, text, k ):
+	def neighbours( self, text, k, queryset=[] ):
 
 		# convert input document into a frequency matrix
 		freq = self.text2freq( text )
-
+		
 		# compute the distribution over topics for the input document
-		texttopics = self.LDA.doc_topics( C )
+		texttopics = self.LDA.doc_topics( freq )
 
 		# get its most likely topic
 		z = np.argmax( texttopics[ 'document 0' ] )
